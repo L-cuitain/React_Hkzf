@@ -1,0 +1,22 @@
+.tabbar {
+    padding-bottom: 50px;
+  }
+  
+.tabbar .iconfont {
+    font-size: 20px;
+  }
+  
+/* .tabbar .am-tab-bar-bar {
+    position: fixed;
+    bottom: 0;
+  } */
+  
+.tabbar .am-tab-bar {
+    height: 50px;
+    overflow: hidden;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+

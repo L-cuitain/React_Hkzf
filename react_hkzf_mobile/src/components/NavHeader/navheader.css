@@ -1,0 +1,11 @@
+.citylist_nav .am-navbar {
+    margin-top: -45px;
+}
+
+.citylist_nav .am-navbar-light {
+    background-color: #f6f5f6;
+}
+
+.citylist_nav .icon-back {
+    color: #333;
+}

@@ -10,8 +10,9 @@ import CurrentCity from '../../utils/CurrentCity/CurrentCity';
 //引入antd样式
 import { Toast } from 'antd-mobile';
 
-//引入axios
-import axios from 'axios';
+//网络请求配置
+import { httpGet } from '../../utils/axios/http';
+import { AreaAPI , HouseAPI } from '../../api';
 
 //Label样式
 const labelStyle = {
@@ -76,7 +77,7 @@ function Map() {
         //获取房源数据 加载提示
         Toast.loading("加载中...", 0, null, false);
         //发起请求 获取房源数据
-        const { data } = await axios.get("http://localhost:8080/area/map", { params: { id } });
+        const data = await httpGet(AreaAPI.map , { id });
         //请求完毕后 取消加载提示
         Toast.hide();
         //调用 getTypeAndZoom() 获取缩放级别和覆盖物类型
@@ -247,12 +248,10 @@ function Map() {
         //显示加载框
         Toast.loading("加载中...", 0, null, false);
         //发起请求 获取房屋数据
-        const {data} = await axios.get("http://localhost:8080/houses", {
-            params: {
-                cityId: cityId,
-                start: 1,
-                end: 20
-            }
+        const data = await httpGet(HouseAPI.houses, {
+            cityId: cityId,
+            start: 1,
+            end: 20
         });
         //请求完毕后 隐藏加载框
         Toast.hide();

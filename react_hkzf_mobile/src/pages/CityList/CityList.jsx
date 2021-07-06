@@ -18,8 +18,10 @@ import cityFormat from '../../utils/CityFormat/CityFormat';
 //长列表优化组件
 import { AutoSizer, List } from 'react-virtualized';
 
-//引入axios
-import axios from 'axios';
+
+//网络请求配置
+import { httpGet } from '../../utils/axios/http';
+import { AreaAPI } from '../../api';
 
 //引入本地缓存
 import { setLocal } from '../../utils/Local/Local';
@@ -69,13 +71,13 @@ function CityList() {
     //获取城市列表
     const getCityList = async () => {
         // 发起请求
-        const cityResult = await axios.get("http://localhost:8080/area/city", { params: { level: 1 } });
+        const cityResult = await httpGet(AreaAPI.city, { level: 1 });
 
         //获取热门城市
-        const hotResult = await axios.get("http://localhost:8080/area/hot");
+        const hotResult = await httpGet(AreaAPI.hot);
 
-        const citydata = cityResult.data.body;
-        const hotcity = hotResult.data.body;
+        const citydata = cityResult.body;
+        const hotcity = hotResult.body;
 
         //获取城市列表和索引
         const { cityList, cityIndex } = cityFormat(citydata, hotcity);
@@ -176,8 +178,8 @@ function CityList() {
     //获取城市房源信息
     const getCityHouse = async (cityName) => {
         //发起请求
-        const messageResult = await axios.get("http://localhost:8080/area/info", {params: {name: cityName}});
-        const message = messageResult.data.body
+        const messageResult = await httpGet(AreaAPI.info, { name: cityName });
+        const message = messageResult.body
 
 
         //判断是否为上海

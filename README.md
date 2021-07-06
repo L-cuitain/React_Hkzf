@@ -121,12 +121,12 @@ nav导航栏
                            - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
                           |                                                                   |
                           |                                                   - - -> 创建区镇级别覆盖物
-                          ⬇                                                 | createCircle(point,count,areaName,cityId)
+                         ⬇                                                 | createCircle(point,count,areaName,cityId)
 入口 initMap()-->     渲染覆盖物     -->            创建覆盖物                |
                  renderOverlays(id)     createOverlays(type,nextLevel,item) |
                          |                                                  |            
                          |                                                  | - - -> 创建小区级别覆盖物
-                         ⬇                                                    createRect(point, count, areaName, cityId)
+                        ⬇                                                    createRect(point, count, areaName, cityId)
                   计算类型和缩放级别
                   getTypeAndZoom()
                 return{type,nextLevel}

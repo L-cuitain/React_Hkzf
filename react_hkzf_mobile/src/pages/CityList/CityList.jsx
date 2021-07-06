@@ -10,7 +10,7 @@ import './CityList.css';
 import { useHistory } from 'react-router-dom';
 
 //引入navHeader组件
-import NavHeader from '../../components/NavHeader/navheader';
+import NavHeader from '../../components/NavHeader/NavHeader';
 
 //引入封装城市列表数据方法
 import cityFormat from '../../utils/CityFormat/CityFormat';

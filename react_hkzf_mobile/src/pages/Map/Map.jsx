@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import './Map.css';
-
+//nav导航
 import NavHeader from '../../components/NavHeader/NavHeader';
 
 //引入CurrentCity方法
@@ -13,6 +13,7 @@ import { Toast } from 'antd-mobile';
 //引入axios
 import axios from 'axios';
 
+//Label样式
 const labelStyle = {
     cursor: 'pointer',
     border: '0px solid rgb(255, 0, 0)',
@@ -295,7 +296,7 @@ function Map() {
             </div>))
     }
 
-
+    //渲染样式
     return (
         <div className="map">
             {/* navbar */}

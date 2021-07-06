@@ -70,7 +70,7 @@ function Map() {
 
     /**
      * 获取房源数据(获取缩放级别 获取覆盖物类型) getTypeZoom()
-     * @param {String} 房源id
+     * @param {String} id 房源id
      */
     const renderOverlays = async (id) => {
         //获取房源数据 加载提示

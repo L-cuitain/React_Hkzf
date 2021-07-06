@@ -4,8 +4,9 @@ import React , {useState , useEffect} from 'react';
 //引入走马灯
 import { Carousel, Flex, WingBlank, Grid } from 'antd-mobile';
 
-//引入axios
-import axios from 'axios';
+//网络请求配置
+import { httpGet } from '../../utils/axios/http';
+import { HomeAPI } from '../../api';
 
 //引入style
 import './Home.css';
@@ -44,7 +45,9 @@ function Home() {
 
   //搜索显示地区
   const [cityName, setCityName] = useState("上海");
-  const [areaId , setAreaId] = useState("");
+
+  //地区Id
+  const [areaId , setAreaId] = useState("AREA|88cff55c-aaa4-e2e0");
 
   //租房小组
   const [groups, setGroups] = useState([]);
@@ -97,7 +100,7 @@ function Home() {
   //获取轮播图 图片列表
   const getSwiperImg = async () => {
     //发起请求 获取轮播图图片
-    const { data } = await axios.get("http://localhost:8080/home/swiper");
+    const data = await httpGet(HomeAPI.swiper);
     setSwiperImg(data.body);
     setIsFinished(true);
   }
@@ -115,7 +118,7 @@ function Home() {
   //获取租房小组数据
   const getGroups = async () => {
     //发起请求 获取租房小组数据
-    const { data } = await axios.get("http://localhost:8080/home/groups", { area: "AREA|88cff55c-aaa4-e2e0" });
+    const data = await httpGet(HomeAPI.group, { area: areaId });
     setGroups(data.body);
   }
 
@@ -123,7 +126,7 @@ function Home() {
   //获取最新资讯数据
   const getNews = async () => {
     //发起请求 获取最新资讯数据
-    const { data } = await axios.get("http://localhost:8080/home/news", { area: "AREA|88cff55c-aaa4-e2e0" });
+    const data = await httpGet(HomeAPI.news, { area: areaId });
     setNews(data.body);
   }
 

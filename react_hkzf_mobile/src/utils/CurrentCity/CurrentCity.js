@@ -4,8 +4,9 @@ import {
     setLocal
 } from "../Local/Local";
 
-//引入axios
-import axios from 'axios';
+//网络请求配置
+import { httpGet } from '../axios/http';
+import { AreaAPI } from '../../api';
 
 //获取当前所在城市 将获取所在城市方法封装
 const CurrentCity = () => {
@@ -18,9 +19,7 @@ const CurrentCity = () => {
             // console.log(city);
             city.get(async (result) => {
                 //根据市发起请求查询该市的信息
-                const {
-                    data
-                } = await axios.get("http://localhost:8080/area/info", {
+                const data = await httpGet(AreaAPI.info, {
                     name: result.name
                 });
                 //将请求获取的数据存入状态

@@ -53,9 +53,9 @@ nav导航栏渲染
 
 ### - 找房 FindHouse
 ```
-nav导航栏
+搜索栏
 
-
+筛选菜单
 ```
 
 ## 组件
@@ -64,6 +64,9 @@ nav导航栏
 
 ### - 搜索栏 SearchHeader
 
+### - 条件筛选菜单 Filter
+
+### - 条件筛选标题组件 FilterTitle
 
 ## 实现功能
 

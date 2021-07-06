@@ -58,7 +58,7 @@ nav导航栏渲染
 筛选菜单
 ```
 
-## 组件
+## Component
 
 ### - 导航栏 NavHeader
 

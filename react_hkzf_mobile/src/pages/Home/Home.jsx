@@ -17,7 +17,7 @@ import Nav3 from '../../assets/images/nav-3.png'
 import Nav4 from '../../assets/images/nav-4.png'
 
 //导入搜索组件
-import SearchHeader from '../../components/SearchHeader/searchheader';
+import SearchHeader from '../../components/SearchHeader/SearchHeader';
 
 //导入CurrentCity方法
 import CurrentCity from '../../utils/CurrentCity/CurrentCity';

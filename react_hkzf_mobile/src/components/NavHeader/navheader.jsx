@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { NavBar } from 'antd-mobile';
 
 //引入css样式
-import './navheader.css';
+import Style from './NavHeader.module.css';
 
 //引入 prop-types严格类型检查
 import PropTypes from 'prop-types';
@@ -14,7 +14,7 @@ function NavHeader({ navTitle }) {
     const history = useHistory();
 
     return (
-        <div className="citylist_nav">
+        <div className={Style.citylist_nav}>
             <NavBar
                 mode="light"
                 icon={<i className="iconfont icon-back"></i>}

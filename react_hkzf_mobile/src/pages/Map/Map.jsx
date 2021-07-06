@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import './Map.css';
 
-import NavHeader from '../../components/NavHeader/navheader';
+import NavHeader from '../../components/NavHeader/NavHeader';
 
 //引入CurrentCity方法
 import CurrentCity from '../../utils/CurrentCity/CurrentCity';
@@ -37,7 +37,7 @@ function Map() {
 
     useEffect(() => {
         initMap();
-    });
+    },[]);
 
 
 
@@ -47,7 +47,6 @@ function Map() {
         const map = new BMap.Map("container");
 
         window.map = map;
-
         //获取当前定位城市
         const { label, value } = await CurrentCity();
 
@@ -113,7 +112,6 @@ function Map() {
             type = "rect";
         }
             
-
         return {
             type,
             nextLevel
@@ -130,7 +128,7 @@ function Map() {
         //解构 经纬度 房源数量 区域名称
         const { coord: { latitude, longitude }, count, label, value } = item;
         //覆盖物的坐标
-        const point = new BMap.Point(latitude, longitude);
+        const point = new BMap.Point(longitude,latitude);
         //判断type类型是否是circle
         switch (type) {
             case "circle":
@@ -139,7 +137,7 @@ function Map() {
                 break;
             case "rect":
                 //如果是rect , 调用 createRect()方法 , 并传递参数
-                createRect(point, count, label, level);
+                createRect(point, count, label, value);
                 break;
         }
     }
@@ -248,7 +246,7 @@ function Map() {
         //显示加载框
         Toast.loading("加载中...", 0, null, false);
         //发起请求 获取房屋数据
-        const result = await axios.get("http://localhost:8080/houses", {
+        const {data} = await axios.get("http://localhost:8080/houses", {
             params: {
                 cityId: cityId,
                 start: 1,
@@ -257,10 +255,9 @@ function Map() {
         });
         //请求完毕后 隐藏加载框
         Toast.hide();
-
         //将获取的值存入状态中
         setIsShow(true);
-        setHouseList(result.body.list);
+        setHouseList(data.body.list);
     }
 
     //渲染房屋列表
@@ -307,7 +304,7 @@ function Map() {
             <div id="container">
 
             </div>
-            <div className={['houselist', isShow ? 'show' : ''].join(' ')}>
+            <div className={['houseList', isShow ? 'show' : ''].join(' ')}>
                 <div className="titleWrap">
                     <h1 className="listTitle">房屋列表</h1>
                     <a className="titleMore" href="/house/list">

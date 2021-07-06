@@ -1,0 +1,11 @@
+.citylist_nav :global(.am-navbar) {
+    margin-top: -45px;
+}
+
+.citylist_nav :global(.am-navbar-light) {
+    background-color: #f6f5f6;
+}
+
+.citylist_nav :global(.icon-back) {
+    color: #333;
+}

@@ -4,22 +4,25 @@ import { Flex } from 'antd-mobile';
 
 import { useHistory } from 'react-router-dom';
 
-import './searchheader.css';
+import Style from './SearchHeader.module.css';
+
+//引入 prop-types严格类型检查
+import PropTypes from 'prop-types';
 
 function SearchHeader({cityName}){
     const history = useHistory();
 
     return (
-        <Flex className="search-box">
+        <Flex className={Style.search_box}>
             {/* search */}
-            <Flex className="search">
+            <Flex className={Style.search}>
                 {/* 搜索左边查询地点 */}
-                <div className="location" onClick={() => history.push("/citylist")}>
+                <div className={Style.location} onClick={() => history.push("/citylist")}>
                     <span className="name">{cityName}</span>
                     <i className="iconfont icon-arrow"/>
                 </div>
                 {/* 搜索框 */}
-                <div className="form" onClick={() => history.push("/search")}>
+                <div className={Style.form} onClick={() => history.push("/search")}>
                     <i className="iconfont icon-seach" />
                     <span className="text">请输入小区或地址</span>
                 </div>
@@ -28,6 +31,11 @@ function SearchHeader({cityName}){
             <i className="iconfont icon-map" onClick={() => history.push("/map")} />
         </Flex>
     )
+}
+
+//检查传入参数类型
+SearchHeader.propTypes = {
+    cityName: PropTypes.string.isRequired
 }
 
 export default SearchHeader;

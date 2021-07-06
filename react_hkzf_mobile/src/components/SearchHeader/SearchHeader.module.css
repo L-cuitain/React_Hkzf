@@ -1,5 +1,5 @@
 /* 顶部导航 */
-.search-box {
+.search_box {
     position: absolute;
     top: 25px;
     width: 100%;
@@ -20,7 +20,7 @@
 }
 
 /*  位置  */
-.location .icon-arrow {
+.location :global(.icon-arrow) {
     margin-left: 2px;
     font-size: 12px;
     color: #7f7f80;
@@ -33,21 +33,21 @@
     line-height: 16px;
 }
 
-.form .icon-seach {
+.form :global(.icon-seach) {
     vertical-align: middle;
     padding: 0 2px 0 12px;
     color: #9c9fa1;
     font-size: 15px;
 }
 
-.form .text {
+.form :global(.text) {
     padding-left: 4px;
     font-size: 13px;
     color: #9c9fa1;
 }
 
 /* 右侧地图图标 */
-.icon-map {
+:global(.icon-map) {
     font-size: 25px;
     color: #fff;
 }

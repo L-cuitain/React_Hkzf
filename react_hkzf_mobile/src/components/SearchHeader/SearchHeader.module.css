@@ -5,7 +5,7 @@
     width: 100%;
     padding: 0 10px;
     box-sizing: border-box;
-    z-index: 999;
+    z-index: 3;
 }
 
 /* 左侧白色区域 */

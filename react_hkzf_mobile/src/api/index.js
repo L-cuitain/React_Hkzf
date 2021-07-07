@@ -13,5 +13,6 @@ export const AreaAPI = {
 }
 
 export const HouseAPI = {
-    houses: "/houses"
+    houses: "/houses",
+    condition: "/houses/condition"
 }

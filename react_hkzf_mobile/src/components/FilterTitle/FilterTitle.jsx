@@ -16,7 +16,7 @@ const titleList = [
 ]
 
 //条件筛选标题组件
-function FilterTitle({ titleSelectedStatus , changeStatus }) {
+function FilterTitle({ titleSelectedStatus , changeTitleStatus }) {
     return (
         <Flex align="center" className={Style.root}>
             {/* 选中类名: selected */}
@@ -25,7 +25,7 @@ function FilterTitle({ titleSelectedStatus , changeStatus }) {
                     //获取选中状态 判断是否高亮
                     const isSelected = titleSelectedStatus[item.type]
                     return (<Flex.Item key={item.type}>
-                        <span className={[Style.dropdown, isSelected ? Style.selected : ''].join(' ')} onClick={() => {changeStatus(item.type)}}>
+                        <span className={[Style.dropdown, isSelected ? Style.selected : ''].join(' ')} onClick={() => {changeTitleStatus(item.type)}}>
                             <span>{item.title}</span>
                             <i className="iconfont icon-arrow"></i>
                         </span>

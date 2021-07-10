@@ -20,17 +20,20 @@ import TitleSelectedStatus from '../../utils/TitleSelectedStatus/TitleSelectedSt
 import { httpGet } from '../../utils/axios/http';
 import { HouseAPI } from '../../api';
 
+//引入 prop-types严格类型检查
+import PropTypes from 'prop-types';
+
 //引入样式
 import Style from './Filter.module.css';
 
 //条件筛选整体组件
-function Filter() {
+function Filter({onFilter}) {
 
     //判断filterTitle高亮状态
     const [titleSelectedStatus, setTitleSelectedStatus] = useState({
         area: false,
         mode: false,
-        pirce: false,
+        price: false,
         more: false
     });
 
@@ -75,7 +78,6 @@ function Filter() {
 
         //获取筛选条件
         const res = await httpGet(HouseAPI.condition, { id: value });
-
         //添加到状态中
         setFilterData(res.body);
     }
@@ -83,7 +85,6 @@ function Filter() {
 
     //改变filterTitle高亮
     const changeTitleStatus = (type) => {
-
         //调用 TitleSelectedStatus方法 得到高亮选项
         const newTitleSelectedStatus = TitleSelectedStatus(type, titleSelectedStatus, tempValue);
 
@@ -122,10 +123,12 @@ function Filter() {
         //more项
         filter.more = newTempValue.more.join(',');
 
+        //将结果传递给 page FindHouse
+        onFilter(filter);
 
         //重新添加高亮状态
         setTitleSelectedStatus(newTitleSelectedStatus);
-        
+
         //清除type类型
         setOpenType("");
     }
@@ -133,9 +136,6 @@ function Filter() {
 
     //筛选条件取消方法
     const onCancel = (type) => {
-        //调用 TitleSelectedStatus方法 得到高亮选项
-        const newTitleSelectedStatus = TitleSelectedStatus(null, titleSelectedStatus, tempValue);
-
         //解构tempValue的值
         const newTempValue = { ...tempValue };
 
@@ -145,6 +145,9 @@ function Filter() {
         if (type === 'more') {
             newTempValue.more = [];
         }
+
+        //调用 TitleSelectedStatus方法 得到高亮选项
+        const newTitleSelectedStatus = TitleSelectedStatus(null, titleSelectedStatus, newTempValue);
 
         //重新配置筛选状态
         setTempValue(newTempValue);
@@ -281,6 +284,10 @@ function Filter() {
 
         </div>
     );
+}
+
+Filter.propTypes = {
+    onFilter: PropTypes.array
 }
 
 export default Filter;

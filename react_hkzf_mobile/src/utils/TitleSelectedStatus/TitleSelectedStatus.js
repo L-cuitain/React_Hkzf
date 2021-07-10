@@ -12,6 +12,7 @@ function TitleSelectedStatus(type , titleSelectedStatus , selectValue){
         //获取每个tempValue键对应的值
         const tempType = selectValue[item];
 
+        //判断如果type为当前类型 则显示高亮
         if(type !== null && type === item){
             newTitleSelectedStatus[item] = true;
             return newTitleSelectedStatus;

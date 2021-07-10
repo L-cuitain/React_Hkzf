@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 
 //引入 react-Spring动画
-import { Spring } from 'react-spring'
+import { Spring } from 'react-spring/renderprops'
 
 //引入 FilterFooter组件
 import FilterFooter from '../FilterFooter/FilterFooter';
@@ -28,33 +28,33 @@ function FilterMore({
     const [selectedValue, setSelectedValue] = useState(defaultValue);
 
     //点击标签选中
-    const changeSelected = () => {
+    const changeSelected = (val) => {
+        //解构当前 选项选中数组 selectedValue
+        let newSelectedValue = [...selectedValue];
 
+        //判断 id 是否存在于newSelectedValue
+        if(newSelectedValue.indexOf(val) > -1){
+            //存在 则把val从newSelectedValue移除
+            newSelectedValue = newSelectedValue.filter(item => item !== val)
+        }else{
+            //不存在 把val添加到newSelectedValue
+            newSelectedValue.push(val);
+        }
+
+        //重新加载状态
+        setSelectedValue(newSelectedValue);
+        changeTempValue(newSelectedValue,type);
     }
 
-    //根据类型 渲染标签 
-    const renderFilters = (data) => {
-        return data && data.map(item => {
-            //判断是否存在选中项
-            let isSelected = selectedValue.indexOf(item.value) > -1;
 
-            return <span key={item.value} className={[Style.tag, isSelected ? Style.tagActive : ''].join(' ')} onClick={changeSelected}>{item.label}</span>
-        })
-    }
+    //渲染条件内容
+    const renderFilter = () => {
+        //判断是否为more类型
+        const isOpen = type === 'more';
 
-
-    return (
-        <div className={Style.root}>
-            {/* 遮罩层 */}
-            <Spring to={{ opacity: 1 }}>
-                {props => (
-                    <div style={props} className={Style.mask} onClick={() => onCancel()}></div>
-                )}
-            </Spring>
-
-            {/* 条件内容 */}
+        return (
             <Spring
-                to={{ transform: `translate('0px', 0px)` }}
+                to={{ transform: `translate(${isOpen ? '0px' : '100%'}, 0px)` }}
             >
                 {props => (
                     <>
@@ -75,10 +75,51 @@ function FilterMore({
                         </div>
 
                         {/* 底部按钮 */}
-                        <FilterFooter style={props} className={Style.footer} />
+                        <FilterFooter style={props} className={Style.footer} cancelText="清除" onSave={() => onSave()} onCancel={() => onCancel(type)}/>
                     </>
                 )}
             </Spring>
+        )
+    }
+
+
+    //根据类型 渲染标签 
+    const renderFilters = (data) => {
+        return data && data.map(item => {
+            //判断是否存在选中项
+            let isSelected = selectedValue.indexOf(item.value) > -1;
+
+            return <span key={item.value} className={[Style.tag, isSelected ? Style.tagActive : ''].join(' ')} onClick={() => changeSelected(item.value)}>{item.label}</span>
+        })
+    }
+
+
+    //遮罩层渲染
+    const renderMask = () => {
+        //判断是否为more类型
+        const isOpen = type === 'more';
+
+        return (
+            <Spring to={{ opacity: isOpen ? 1 : 0 }}>
+                {props => {
+                    if(props.opacity === 0){
+                        return null;
+                    }
+                    
+                    return <div style={props} className={Style.mask} onClick={() => onCancel()}></div>
+                }}
+            </Spring>
+        )
+    }
+
+
+    return (
+        <div className={Style.root}>
+            {/* 遮罩层 */}
+            {renderMask()}
+
+            {/* 条件内容 */}
+            {renderFilter()}
         </div>
     )
 }

@@ -9,11 +9,11 @@ import Style from './SearchHeader.module.css';
 //引入 prop-types严格类型检查
 import PropTypes from 'prop-types';
 
-function SearchHeader({cityName}){
+function SearchHeader({className , cityName}){
     const history = useHistory();
 
     return (
-        <Flex className={Style.search_box}>
+        <Flex className={className !== undefined ? className : Style.search_box}>
             {/* search */}
             <Flex className={Style.search}>
                 {/* 搜索左边查询地点 */}

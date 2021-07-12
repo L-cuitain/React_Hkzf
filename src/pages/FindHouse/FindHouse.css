@@ -1,0 +1,49 @@
+/* 顶部导航 */
+.search_box {
+  width: 100%;
+  padding: 0 10px;
+  box-sizing: border-box;
+  z-index: 3;
+}
+
+/* 房屋列表样式 */
+.find-house .houseItem {
+  padding: 0 15px;
+}
+
+.find-house .houseItem .ReactVirtualized__List {
+  padding-bottom: 50px;
+}
+
+
+.search-nav {
+  height: 45px;
+  padding: 0 10px;
+  background-color: #f6f5f6;
+}
+
+.search-nav .icon-back {
+  font-size: 16px;
+  color: #999;
+}
+
+.search-nav .SearchHeader_search_box__1rh77 {
+  position: relative;
+  top: 0;
+  padding: 0;
+}
+
+.search_box .am-flexbox {
+  height: 30px;
+}
+
+.search-nav .icon-map {
+  color: #00ae66;
+}
+
+.loading {
+  line-height: 120px;
+  text-align: center;
+  height: 110px;
+  background-color: #f6f5f6;
+}

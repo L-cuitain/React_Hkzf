@@ -115,7 +115,6 @@ function FindHouse() {
     //获取更多房屋列表信息
     //该方法返回值为Promise对象 ({ startIndex: number, stopIndex: number }): Promise
     const loadMoreRows = ({ startIndex, stopIndex }) => {
-        console.log(startIndex,stopIndex);
         //返回Promise对象
         return new Promise(resolve => {
             httpGet(HouseAPI.houses, {
@@ -212,7 +211,7 @@ function FindHouse() {
             {/* 顶部搜索导航 */}
             <Flex className="search-nav">
                 <i className="iconfont icon-back"></i>
-                <SearchHeader cityName={cityName}></SearchHeader>
+                <SearchHeader className="search_box" cityName={cityName}></SearchHeader>
             </Flex>
 
             {/* 筛选菜单 */}

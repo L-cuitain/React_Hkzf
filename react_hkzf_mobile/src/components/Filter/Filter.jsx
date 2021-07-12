@@ -287,7 +287,7 @@ function Filter({onFilter}) {
 }
 
 Filter.propTypes = {
-    onFilter: PropTypes.array
+    onFilter: PropTypes.func
 }
 
 export default Filter;

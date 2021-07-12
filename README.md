@@ -50,7 +50,6 @@
 ### 城市列表渲染
 
 #### CityList.jsx
-```
 * 请求接口 获取 城市列表(citylist) & 热门城市(hotcity)
 
 * 将请求数据作为参数传递给 cityFormat 方法中
@@ -71,10 +70,9 @@
   * scrollToAlignment 对齐方式 滚动默认从中间开始
 
 * 渲染城市列表索引
-```
+
 
 #### CityFormat.js
-```
 * 封装函数 返回创建好的 cityList & cityIndex
 
 * 创建对象 cityList 按字母依次排序保存城市列表
@@ -93,7 +91,7 @@
 * 获取本地储存的地区对象 并将 键 & 值 依次存入 cityList & cityIndex中
 
 * 将封装好的 cityList & cityIndex 作为函数返回值返回
-```
+
 
 ### 地图渲染
 
